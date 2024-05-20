@@ -364,7 +364,7 @@ Transform:
   m_GameObject: {fileID: 768134130}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: 3.12, y: 6.2, z: 0}
+  m_LocalPosition: {x: 3.12, y: 6.2, z: -1}
   m_LocalScale: {x: 5, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -820,11 +820,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 423ca43ed9359b74aab37d81d24744ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "_y\u0421ordinateSpawn": 10
-  "_xMin\u0421ordinateSpawn": -5
-  "_xMax\u0421ordinateSpawn": 5
-  "_zMin\u0421ordinateSpawn": -5
-  "_zMax\u0421ordinateSpawn": 5
+  _yCoordinateSpawn: 10
+  _xMinCoordinateSpawn: -5
+  _xMaxCoordinateSpawn: 5
+  _zMinCoordinateSpawn: -5
+  _zMaxCoordinateSpawn: 5
+  _defaultCapacity: 10
+  _maxSize: 50
   _cubePrefab: {fileID: 7796877719715377953, guid: e6e901576115a424db7aea44f5550b04, type: 3}
   _colors:
   - {r: 0.9245283, g: 0.039248828, b: 0.039248828, a: 0}
@@ -969,7 +971,7 @@ Transform:
   m_GameObject: {fileID: 2040638577}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: -2.59, y: 3.63, z: 0}
+  m_LocalPosition: {x: -2.59, y: 3.63, z: 1.5}
   m_LocalScale: {x: 5, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []

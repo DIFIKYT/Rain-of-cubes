@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Cube : MonoBehaviour
 {
+    [SerializeField] private int _delay = 1;
+
     public event Action<Cube> LifeTimeOut;
     public event Action<Cube> ContactWithPlatform;
 
@@ -24,11 +26,8 @@ public class Cube : MonoBehaviour
 
     private IEnumerator LifeTimeCoroutine()
     {
-        int _minLifeTime = 2;
-        int _maxLifeTime = 5;
-        int _delay = 1;
         var wait = new WaitForSeconds(_delay);
-        int lifeTime = UnityEngine.Random.Range(_minLifeTime, _maxLifeTime);
+        int lifeTime = SetLifeTime();
 
         while (lifeTime > 0)
         {
@@ -37,5 +36,15 @@ public class Cube : MonoBehaviour
         }
 
         LifeTimeOut?.Invoke(this);
+        _isContactWithPlatform = false;
+        GetComponent<Renderer>().material.color = Color.white;
+    }
+
+    private int SetLifeTime()
+    {
+        int _minLifeTime = 2;
+        int _maxLifeTime = 5;
+
+        return UnityEngine.Random.Range(_minLifeTime, _maxLifeTime);
     }
 }
