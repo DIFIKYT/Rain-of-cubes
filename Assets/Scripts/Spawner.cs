@@ -16,6 +16,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private List<Color> _colors;
 
     private ObjectPool<Cube> _cubePool;
+    private float _delay = 0.5f;
 
     private void Awake()
     {
@@ -62,7 +63,7 @@ public class Spawner : MonoBehaviour
         while (true)
         {
             _cubePool.Get();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(_delay);
         }
     }
 
@@ -81,7 +82,8 @@ public class Spawner : MonoBehaviour
 
     private void ChangeColor(Cube cube)
     {
-        cube.GetComponent<Renderer>().material.color = _colors[Random.Range(0, _colors.Count)];
+        if (cube.TryGetComponent<Renderer>(out Renderer renderer))
+            renderer.material.color = _colors[Random.Range(0, _colors.Count)];
     }
 
     private void ReturnToPool(Cube cube)

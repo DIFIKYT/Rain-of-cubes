@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Renderer))]
 public class Cube : MonoBehaviour
 {
     [SerializeField] private int _delay = 1;
@@ -13,9 +14,9 @@ public class Cube : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.GetComponent<Platform>())
+        if (_isContactWithPlatform == false)
         {
-            if (_isContactWithPlatform == false)
+            if (collider.GetComponent<Platform>())
             {
                 StartCoroutine(LifeTimeCoroutine());
                 ContactWithPlatform?.Invoke(this);
@@ -26,21 +27,14 @@ public class Cube : MonoBehaviour
 
     private IEnumerator LifeTimeCoroutine()
     {
-        var wait = new WaitForSeconds(_delay);
-        int lifeTime = SetLifeTime();
-
-        while (lifeTime > 0)
-        {
-            lifeTime--;
-            yield return wait;
-        }
+        yield return new WaitForSeconds(GetRandomLifeTime());
 
         LifeTimeOut?.Invoke(this);
         _isContactWithPlatform = false;
         GetComponent<Renderer>().material.color = Color.white;
     }
 
-    private int SetLifeTime()
+    private int GetRandomLifeTime()
     {
         int _minLifeTime = 2;
         int _maxLifeTime = 5;
